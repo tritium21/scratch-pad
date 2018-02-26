@@ -16,4 +16,4 @@ def atomic(path, mode='r', buffering=-1, encoding=None, errors=None, newline=Non
     if sys.platform == 'win32':
         ctypes.windll.kernel32.ReplaceFileW(path, name, None, 0x2, None, None)
     else:
-os.rename(name, path)
+        os.rename(name, path)
