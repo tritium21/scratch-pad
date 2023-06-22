@@ -1,4 +1,6 @@
- ' A procedure to auto-resize column width of list view control
+' https://eng-shady-mohsen.blogspot.com/2017/01/excel-vba-listview-control-columns-auto.html
+
+' A procedure to auto-resize column width of list view control
 Sub AutoResizeListView(MyListView As Variant)
     ' Create a dynamic label and set it invisible
     Set MyLabel = Me.Controls.Add("Forms.Label.1", "Test Label", True)
