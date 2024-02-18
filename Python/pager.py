@@ -34,7 +34,9 @@ def pager(iterable, page_size=os.get_terminal_size().lines):
                     break
                 case _:
                     continue
-        print("        \r", end="")
+        print("        ", end="\r")
 
 if __name__ == '__main__':
-    pager(range(100))
+    import fileinput
+    with fileinput.FileInput() as f:
+        pager(l.removesuffix('\n') for l in f)
