@@ -28,6 +28,7 @@ def pager(iterable, page_size=os.get_terminal_size().lines):
         while (hit := getch()):
             match hit:
                 case '\x1b' | 'q':
+                    print()
                     return
                 case ' ' | '\r':
                     break
