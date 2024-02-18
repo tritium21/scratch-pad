@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import itertools
 import os
 import sys
@@ -8,13 +9,14 @@ else:
     import tty
     import termios
     def getch():
-        fd = sys.stdin.fileno()
-        attr = termios.tcgetattr(fd)
-        try:
-            tty.setraw(fd)
-            return sys.stdin.read(1)
-        finally:
-            termios.tcsetattr(fd, termios.TCSANOW, attr)
+        with open('/dev/pts/0', 'r') as stdin:
+            fd = stdin.fileno()
+            attr = termios.tcgetattr(fd)
+            try:
+                tty.setraw(fd)
+                return stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSANOW, attr)
 
 def pager(iterable, page_size=os.get_terminal_size().lines):
     groups = [iter(iterable)] * page_size
@@ -39,4 +41,4 @@ def pager(iterable, page_size=os.get_terminal_size().lines):
 if __name__ == '__main__':
     import fileinput
     with fileinput.FileInput() as f:
-        pager(l.removesuffix('\n') for l in f)
+        pager(l.rstrip('\n') for l in f)
