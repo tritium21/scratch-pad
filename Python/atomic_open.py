@@ -13,4 +13,5 @@ def atomic(path, mode='r', buffering=-1, encoding=None, errors=None, newline=Non
         shutil.copy2(old_path, new_path)
     with open(new_path, mode=mode, buffering=buffering, encoding=encoding, errors=errors, newline=newline) as tf:
         yield tf
+        tf.flush()
     new_path.replace(old_path)
