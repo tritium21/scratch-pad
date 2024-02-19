@@ -41,4 +41,4 @@ def pager(iterable, page_size=os.get_terminal_size().lines):
 if __name__ == '__main__':
     import fileinput
     with fileinput.FileInput() as f:
-        pager(l.rstrip('\n') for l in f)
+        pager(l.removesuffix('\n') for l in f)
